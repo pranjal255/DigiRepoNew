@@ -15,14 +15,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class otpverify extends AppCompatActivity {
 
+//    FirebaseAuth fAuth;
+//    FirebaseFirestore fStore;
     private EditText inputcode1,inputcode2,inputcode3,inputcode4,inputcode5,inputcode6;
     private String verificationId;
 
@@ -83,7 +90,8 @@ public class otpverify extends AppCompatActivity {
                                     progressBar.setVisibility(View.GONE);
                                     OTPVerify.setVisibility(View.VISIBLE);
                                     if(task.isSuccessful()){
-                                        Intent intent = new Intent(getApplicationContext(),setpinscreen.class);
+//                                        checkUserProfile();
+                                        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                     }else{
@@ -190,5 +198,40 @@ public class otpverify extends AppCompatActivity {
         });
 
     }
+
+//        @Override
+//        protected void onStart() {
+//            super.onStart();
+//
+//            if(fAuth.getCurrentUser() != null){
+//                checkUserProfile();
+//            }
+//        }
+
+//    private void checkUserProfile() {
+//        DocumentReference docRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+//        Toast.makeText(otpverify.this, "testing "+fAuth.getCurrentUser().getUid()+fAuth.getCurrentUser().getPhoneNumber(), Toast.LENGTH_SHORT).show();
+//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if(documentSnapshot.exists()){
+//                    Intent intent = new Intent(getApplicationContext(),setpinscreen.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(intent);
+//                    finish();
+//                }else {
+//                    //Toast.makeText(Register.this, "Profile Do not Exists.", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(otpverify.this, "Profile Do Not Exists", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }
 //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 Token for android studio login to github

@@ -38,6 +38,7 @@ public class verifyNumber extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("tag1","inside onclick");
+                System.out.println(verificationId);
                 if (inputMobile.getText().toString().trim().isEmpty()) {
                     System.out.println("inside onclick");
                     Toast.makeText(verifyNumber.this, "Enter Mobile", Toast.LENGTH_SHORT).show();
