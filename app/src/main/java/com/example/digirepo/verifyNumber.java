@@ -38,7 +38,6 @@ public class verifyNumber extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("tag1","inside onclick");
-                System.out.println(verificationId);
                 if (inputMobile.getText().toString().trim().isEmpty()) {
                     System.out.println("inside onclick");
                     Toast.makeText(verifyNumber.this, "Enter Mobile", Toast.LENGTH_SHORT).show();
@@ -75,6 +74,7 @@ public class verifyNumber extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), otpverify.class);
                                 intent.putExtra("mobile", inputMobile.getText().toString());
                                 intent.putExtra("verificationId", verificationId);
+                                System.out.println(verificationId);
                                 startActivity(intent);
 
                             }

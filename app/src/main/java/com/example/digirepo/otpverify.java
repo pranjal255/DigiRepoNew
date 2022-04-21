@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class otpverify extends AppCompatActivity {
 
-//    FirebaseAuth fAuth;
-//    FirebaseFirestore fStore;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
     private EditText inputcode1,inputcode2,inputcode3,inputcode4,inputcode5,inputcode6;
     private String verificationId;
 
@@ -37,6 +38,9 @@ public class otpverify extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen5);
+
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
 
         TextView TextMobile = findViewById(R.id.TextMobile);
         TextMobile.setText(String.format(
@@ -75,7 +79,7 @@ public class otpverify extends AppCompatActivity {
                                 inputcode4.getText().toString()+
                                 inputcode5.getText().toString()+
                                 inputcode6.getText().toString();
-
+                System.out.println(verificationId);
                 if(verificationId!=null){
                     progressBar.setVisibility(View.VISIBLE);
                     OTPVerify.setVisibility(View.INVISIBLE);
@@ -83,17 +87,17 @@ public class otpverify extends AppCompatActivity {
                             verificationId,
                             code
                     );
-                    FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
+                    fAuth.signInWithCredential(phoneAuthCredential)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressBar.setVisibility(View.GONE);
                                     OTPVerify.setVisibility(View.VISIBLE);
                                     if(task.isSuccessful()){
-//                                        checkUserProfile();
-                                        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
+                                        checkUserProfile();
+//                                        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+//                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                                        startActivity(intent);
                                     }else{
                                         Toast.makeText(otpverify.this,"The Entered OTP is invalid",Toast.LENGTH_SHORT).show();
                                     }
@@ -199,39 +203,39 @@ public class otpverify extends AppCompatActivity {
 
     }
 
-//        @Override
-//        protected void onStart() {
-//            super.onStart();
-//
-//            if(fAuth.getCurrentUser() != null){
-//                checkUserProfile();
-//            }
-//        }
+        @Override
+        protected void onStart() {
+            super.onStart();
 
-//    private void checkUserProfile() {
-//        DocumentReference docRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
-//        Toast.makeText(otpverify.this, "testing "+fAuth.getCurrentUser().getUid()+fAuth.getCurrentUser().getPhoneNumber(), Toast.LENGTH_SHORT).show();
-//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if(documentSnapshot.exists()){
-//                    Intent intent = new Intent(getApplicationContext(),setpinscreen.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(intent);
-//                    finish();
-//                }else {
-//                    //Toast.makeText(Register.this, "Profile Do not Exists.", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(otpverify.this, "Profile Do Not Exists", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+            if(fAuth.getCurrentUser() != null){
+                checkUserProfile();
+            }
+        }
+
+    private void checkUserProfile() {
+        DocumentReference docRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
+        Toast.makeText(otpverify.this, "testing "+fAuth.getCurrentUser().getUid()+fAuth.getCurrentUser().getPhoneNumber(), Toast.LENGTH_SHORT).show();
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    Intent intent = new Intent(getApplicationContext(),setpinscreen.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    //Toast.makeText(Register.this, "Profile Do not Exists.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(otpverify.this, "Profile Do Not Exists", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
 //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 Token for android studio login to github

@@ -28,6 +28,7 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
     EditText firstName,lastName,email;
+    String phone;
     Button saveBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -46,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
+        phone = fAuth.getCurrentUser().getPhoneNumber();
 
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user.put("first",firstName.getText().toString());
                 user.put("last",lastName.getText().toString());
                 user.put("email",email.getText().toString());
+                user.put("phone",phone);
 
                 overridePendingTransition(R.anim.slide_in_left,android.R.anim.slide_out_right);
 
