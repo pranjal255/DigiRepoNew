@@ -4,143 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dashboard">
+    tools:context=".dashboard"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="197dp"
-        android:layout_height="140dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="-27dp"
-        android:src="@drawable/test2"></ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="42dp"
-        android:src="@drawable/home"></ImageView>
+            <ImageView
+                android:layout_width="197dp"
+                android:id="@+id/digiimage"
+                android:layout_height="140dp"
+                android:layout_marginStart="101dp"
+                android:layout_marginTop="-27dp"
+                android:src="@drawable/test2" />
 
-    <ImageView
-        android:layout_width="34dp"
-        android:layout_height="49dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="39dp"
-        android:src="@drawable/repo" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scrollv">
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="114dp"
-        android:src="@drawable/lab1"></ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="4dp"
-        android:src="@drawable/lab2"></ImageView>
+                    <ImageView
+                        android:layout_width="214dp"
+                        android:layout_height="143dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="50dp"
+                        android:src="@drawable/lab1" />
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="257dp"
-        android:layout_marginEnd="177dp"
-        android:src="@drawable/lab3"></ImageView>
+                    <ImageView
+                        android:layout_width="214dp"
+                        android:layout_height="143dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="50dp"
+                        android:src="@drawable/lab2" />
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="255dp"
-        android:layout_marginEnd="6dp"
-        android:src="@drawable/lab4"></ImageView>
+                    <ImageView
+                        android:layout_width="214dp"
+                        android:layout_height="143dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="50dp"
+                        android:src="@drawable/lab3" />
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="402dp"
-        android:layout_marginEnd="177dp"
-        android:src="@drawable/lab5"></ImageView>
+                    <ImageView
+                        android:layout_width="214dp"
+                        android:layout_height="143dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="50dp"
+                        android:src="@drawable/lab4" />
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="399dp"
-        android:layout_marginEnd="6dp"
-        android:src="@drawable/lab6"></ImageView>
+                    <ImageView
+                        android:layout_width="214dp"
+                        android:layout_height="143dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="50dp"
+                        android:src="@drawable/lab5" />
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="544dp"
-        android:layout_marginEnd="177dp"
-        android:src="@drawable/lab7"></ImageView>
+                    <ImageView
+                        android:layout_width="214dp"
+                        android:layout_height="143dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="40dp"
+                        android:src="@drawable/lab6" />
 
-    <ImageView
-        android:layout_width="214dp"
-        android:layout_height="143dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="541dp"
-        android:layout_marginEnd="6dp"
-        android:src="@drawable/lab8"></ImageView>
+                    <View android:layout_width="match_parent"
+                        android:layout_height="55dp" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="37dp"
-        android:layout_marginBottom="15dp"
-        android:text="HOME"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="14dp"
-        android:text="ISSUED REPORT"
-        android:textStyle="bold" />
+        android:layout_gravity="start"
+        android:orientation="horizontal"
+        app:menu="@menu/bottom_nav_menu">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </RelativeLayout>

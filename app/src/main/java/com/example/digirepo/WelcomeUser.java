@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class WelcomeUser extends AppCompatActivity {
 
-    private Button button;
+    Button button;
 
 
     @Override
