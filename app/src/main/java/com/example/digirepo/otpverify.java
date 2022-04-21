@@ -203,14 +203,14 @@ public class otpverify extends AppCompatActivity {
 
     }
 
-        @Override
-        protected void onStart() {
-            super.onStart();
-
-            if(fAuth.getCurrentUser() != null){
-                checkUserProfile();
-            }
-        }
+//        @Override
+//        protected void onStart() {
+//            super.onStart();
+//
+//            if(fAuth.getCurrentUser() != null){
+//                checkUserProfile();
+//            }
+//        }
 
     private void checkUserProfile() {
         DocumentReference docRef = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
