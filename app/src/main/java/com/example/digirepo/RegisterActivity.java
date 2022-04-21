@@ -21,18 +21,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
     EditText firstName,lastName,email;
-    String phone;
     Button saveBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    String userID;
+    String userID,phone,uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
         phone = fAuth.getCurrentUser().getPhoneNumber();
-
+        uid  = shortUUID();
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user.put("last",lastName.getText().toString());
                 user.put("email",email.getText().toString());
                 user.put("phone",phone);
+                user.put("UID", uid);
 
                 overridePendingTransition(R.anim.slide_in_left,android.R.anim.slide_out_right);
 
@@ -101,6 +103,10 @@ public class RegisterActivity extends AppCompatActivity {
 //
 //    }
 
-
+    public static String shortUUID() {
+        UUID uuid = UUID.randomUUID();
+        long l = ByteBuffer.wrap(uuid.toString().getBytes()).getLong();
+        return Long.toString(l, Character.MAX_RADIX);
+    }
 
 }

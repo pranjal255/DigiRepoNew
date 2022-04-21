@@ -39,12 +39,27 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="190dp"
-        android:text="Welcome USER,"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="144dp"
+        android:gravity="center"
+        android:text="Welcome"
         android:textColor="#000000"
-        android:textSize="20sp"
-        />
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="377dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="202dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="29sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView5"
@@ -53,23 +68,27 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="248dp"
-        android:text="Your UID is "
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="395dp"
+        android:gravity="center"
+        android:text="Your UID is: "
         android:textColor="#000000"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="243dp"
-        android:layout_height="58dp"
+    <TextView
+        android:id="@+id/uniqueId"
+        android:layout_width="224dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="324dp"
-        android:layout_marginEnd="63dp"
-        android:ems="10"
-        android:hint="A819XX101OP09"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="396dp"
+        android:layout_marginEnd="33dp"
+        android:drawableEnd="@drawable/ic_clip"
+        android:drawableTint="@color/colorPrimary"
+        android:gravity="center"
+        android:hint="A819XX101OP0"
+        android:textSize="22sp"
+        android:textStyle="italic" />
 
 </RelativeLayout>
