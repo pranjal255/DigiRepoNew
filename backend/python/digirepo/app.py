@@ -60,7 +60,6 @@ def render():
         metadata_file.write(json.dumps({
             'issue_date': time.mktime(datetime.now().timetuple()),
             'report_name': f.filename,
-            'user_phone': user_phone,
             'lab_id': lab_id
         }))
         metadata_file.close()

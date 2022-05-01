@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bglight"
     android:overScrollMode="never"
     android:scrollbars="none"
     tools:context=".verifyNumber">
@@ -21,6 +23,12 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="7dp"
             android:src="@drawable/test2" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="370dp"
+            android:layout_height="14dp"
+            app:srcCompat="@drawable/rectangle_welcome_screen" />
 
         <TextView
             android:layout_width="wrap_content"

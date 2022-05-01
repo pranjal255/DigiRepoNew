@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E8F1FF"
     android:overScrollMode="never"
     android:scrollbars="none"
     tools:context=".otpverify">
@@ -19,6 +21,13 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="7dp"
             android:src="@drawable/test2" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="370dp"
+            android:layout_height="14dp"
+            app:srcCompat="@drawable/rectangle_welcome_screen" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -183,7 +192,7 @@
                 android:layout_marginStart="124dp"
                 android:layout_marginEnd="135dp"
                 android:layout_marginBottom="200dp"
-                android:background="@drawable/background_button"
+                android:background="#204480"
                 android:enabled="true"
                 android:text="@string/verify"
                 android:textColor="@color/colorWhite"

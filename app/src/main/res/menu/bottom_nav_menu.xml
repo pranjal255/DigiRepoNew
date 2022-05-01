@@ -6,7 +6,7 @@
         android:icon="@drawable/home"/>
     <item
         android:id="@+id/reports_btn"
-        android:title="@string/reports"
+        android:title="@string/issued_reports"
         android:icon="@drawable/reportshow"/>
 
 </menu>
