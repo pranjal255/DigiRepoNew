@@ -17,6 +17,9 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="green">#26FF00</color>
     <color name="green_dark">#006400</color>
+    <color name="bglight">#E8F1FF</color>
+    <color name="bgdark">#C2D3EC</color>
+    <color name="bgbutton">#204480</color>
 
     <color name="themeColor">#11CFC5</color>
 

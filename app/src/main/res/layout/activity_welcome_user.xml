@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E8F1FF"
     tools:context=".WelcomeUser">
 
     <ImageView
@@ -16,6 +17,19 @@
         android:layout_marginTop="-27dp"
         android:src="@drawable/test2"></ImageView>
 
+    <ImageView
+        android:id="@+id/rectimage2"
+        android:layout_width="336dp"
+        android:layout_height="14dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="101dp"
+        android:layout_marginEnd="42dp"
+        android:src="@drawable/rectangle_welcome_screen"></ImageView>
+
     <Button
         android:id="@+id/Next"
         android:layout_width="400dp"
@@ -27,8 +41,9 @@
         android:layout_marginStart="-7dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="1dp"
-        android:background="#D000BCD4"
-        android:text="Next"
+        android:background="#204480"
+        android:text="NEXT"
+        android:textColor="#FFFFFF"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:iconTint="#BF03A9F4" />
 
@@ -78,16 +93,20 @@
 
     <TextView
         android:id="@+id/uniqueId"
-        android:layout_width="224dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="396dp"
-        android:layout_marginEnd="33dp"
+        android:layout_marginStart="-14dp"
+        android:layout_marginTop="395dp"
+        android:layout_marginEnd="14dp"
+        android:layout_toEndOf="@+id/textView5"
+        android:background="#DEDEDE"
         android:drawableEnd="@drawable/ic_clip"
         android:drawableTint="@color/colorPrimary"
         android:gravity="center"
         android:hint="A819XX101OP0"
+        android:textColor="#0078FF"
         android:textSize="22sp"
         android:textStyle="italic" />
 

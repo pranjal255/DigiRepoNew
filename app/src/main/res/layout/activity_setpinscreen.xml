@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bglight"
     tools:context=".setpinscreen">
 
     <ImageView
@@ -13,17 +14,29 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/test2" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="370dp"
+        android:layout_height="14dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="197dp"
+        app:srcCompat="@drawable/rectangle_welcome_screen" />
+
     <TextView
         android:layout_width="186dp"
         android:layout_height="41dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="269dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="267dp"
+        android:gravity="center"
         android:text="Set 4-digit pin"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="20sp" />
-
 
     <EditText
         android:id="@+id/inputcode1"
@@ -95,14 +108,14 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="406dp"
-        android:background="#D000BCD4"
+        android:layout_marginTop="426dp"
+        android:background="@color/bgbutton"
         android:enabled="false"
         android:gravity="center"
-        android:text="Next"
+        android:text="NEXT"
+        android:textColor="@color/whiteTextColor"
         android:textStyle="bold"
         tools:ignore="TouchTargetSizeCheck" />
-
 
 
 </RelativeLayout>
