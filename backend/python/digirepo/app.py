@@ -58,7 +58,7 @@ def render():
             os.makedirs(metadata_folder, exist_ok=True)
         metadata_file = open(f'{metadata_folder}{f.filename}', 'w')
         metadata_file.write(json.dumps({
-            'issue_date': time.mktime(datetime.now().timetuple()),
+            'issue_date': datetime.now().strftime("%d-%m-%y"),
             'report_name': f.filename,
             'lab_id': lab_id
         }))

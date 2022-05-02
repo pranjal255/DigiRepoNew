@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="350dp"
-    android:layout_height="525dp"
+    android:layout_width="370dp"
+    android:layout_height="700dp"
     android:background="@drawable/pop_back"
     android:padding="5dp"
     android:layout_gravity="center"
     android:clipToOutline="true">
 
     <TextView
-        android:id="@+id/txtclose"
+        android:id="@+id/txtclose_pdf"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="end"
@@ -23,18 +23,9 @@
         android:textColor="@color/white"
         android:textStyle="bold" />
 
-    <ScrollView
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/idPDFView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/reportsListView"
-            android:dividerHeight="10.0sp"/>
-
-    </ScrollView>
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>

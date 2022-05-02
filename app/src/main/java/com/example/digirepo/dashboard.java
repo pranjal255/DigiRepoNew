@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -30,19 +31,26 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+
+//import com.github.barteksc.pdfviewer.PDFView;
+//import java.io.BufferedInputStream;
 import java.util.Objects;
 
 public class dashboard extends AppCompatActivity implements View.OnClickListener {
-    Dialog myDialog;
-    int id;
+    Dialog myDialog,loading,pdfview;
+    int lab_id;
+//    PDFView pdfView;
+
     CardView card1,card2,card3,card4,card5,card6;
+
     ListView lv;
 
     FirebaseAuth fAuth;
-    String rname , createdat;
+    String rname , createdat, phonen;
 
-    private String JSON_URL;
+    private String JSON_URL,JSON_FINAL_URL;
 
     ArrayList<HashMap<String,String>> reportsList;
 
@@ -50,8 +58,6 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("Inside on create");
         super.onCreate(savedInstanceState);
-
-        lv = findViewById(R.id.reportsListView);
 
         fAuth = FirebaseAuth.getInstance();
         System.out.println(fAuth.getCurrentUser().getPhoneNumber());
@@ -74,30 +80,33 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
         card6.setOnClickListener((View.OnClickListener) this);
 
         myDialog = new Dialog(this);
+        loading = new Dialog(this);
+        pdfview = new Dialog(this);
+
     }
     @Override
     public void onClick(View v){
 //        int id;
        if(v.getId()==R.id.l1) {
-        id=1;
+        lab_id=1;
        }
        else if (v.getId()==R.id.l2){
-           id=2;
+           lab_id=2;
        }else if (v.getId()==R.id.l3){
-           id=3;
+           lab_id=3;
        }else if (v.getId()==R.id.l4){
-           id=4;
+           lab_id=4;
        }else if (v.getId()==R.id.l5){
-           id=5;
+           lab_id=5;
        }else if (v.getId()==R.id.l6){
-           id=6;
+           lab_id=6;
        }
-       String phonen = fAuth.getCurrentUser().getPhoneNumber();
-        phonen = phonen.substring(3);
+       phonen = fAuth.getCurrentUser().getPhoneNumber();
+       phonen = phonen.substring(3);
        System.out.println(phonen);
        System.out.println("after if");
-       System.out.println(id);
-        JSON_URL = "https://378e-14-139-238-92.ngrok.io/api/user/report/metadata/"+phonen+"/"+id;
+       System.out.println(lab_id);
+        JSON_URL = "https://378e-14-139-238-92.ngrok.io/api/user/report/metadata/"+phonen+"/"+lab_id;
         System.out.println(JSON_URL);
 //           id=1;
 //       else
@@ -110,6 +119,10 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
         TextView txtclose;
 
         myDialog.setContentView(R.layout.popup_screen);
+        loading.setContentView(R.layout.loading);
+
+        lv = myDialog.findViewById(R.id.reportsListView);
+
         reportsList = new ArrayList<>();
 
         GetData getData = new GetData();
@@ -124,8 +137,8 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
                 myDialog.dismiss();
             }
         });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading.show();
     }
 
     public class GetData extends AsyncTask<String, String, String>{
@@ -186,6 +199,8 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
                     rname= jsonObject1.getString("report_name");
+                    rname = rname.substring(0,rname.length()-4);
+
                     System.out.println(rname);
                     createdat = jsonObject1.getString("issue_date");
 
@@ -197,7 +212,9 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
 
                     reportsList.add(reportsdata);
                 }
+                System.out.println("Print array");
                 System.out.println(reportsList);
+                System.out.println(Arrays.asList(reportsList));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -210,7 +227,25 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
                     new int[]{R.id.rnameText, R.id.dateText}
             );
 
+            myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            myDialog.show();
+            loading.dismiss();
             lv.setAdapter(adapter);
+
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    TextView textView = (TextView) view.findViewById(R.id.rnameText);
+                    String text = textView.getText().toString();
+
+                    JSON_FINAL_URL = "https://378e-14-139-238-92.ngrok.io/api/user/report/"+phonen+"/"+lab_id+"/"+text+".pdf";
+
+                    System.out.println("get pdf url" + JSON_FINAL_URL);
+
+                }});
+
+
         }
     }
+
 }
