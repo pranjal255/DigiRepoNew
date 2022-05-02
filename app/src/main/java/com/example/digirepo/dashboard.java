@@ -5,11 +5,16 @@ import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -17,6 +22,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Timer;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -37,20 +43,25 @@ import java.util.HashMap;
 //import com.github.barteksc.pdfviewer.PDFView;
 //import java.io.BufferedInputStream;
 import java.util.Objects;
+import java.util.logging.LogRecord;
 
 public class dashboard extends AppCompatActivity implements View.OnClickListener {
     Dialog myDialog,loading,pdfview;
     int lab_id;
+    boolean redirect = false,completely_loaded=true;
+    WebView webView;
 //    PDFView pdfView;
 
     CardView card1,card2,card3,card4,card5,card6;
+    Handler setDelay;
+    Runnable startDelay;
 
     ListView lv;
 
     FirebaseAuth fAuth;
     String rname , createdat, phonen;
 
-    private String JSON_URL,JSON_FINAL_URL;
+    private String JSON_URL,JSON_FINAL_URL,webview_url;
 
     ArrayList<HashMap<String,String>> reportsList;
 
@@ -120,6 +131,9 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
 
         myDialog.setContentView(R.layout.popup_screen);
         loading.setContentView(R.layout.loading);
+        pdfview.setContentView(R.layout.pdf_view_temp);
+
+
 
         lv = myDialog.findViewById(R.id.reportsListView);
 
@@ -235,13 +249,81 @@ public class dashboard extends AppCompatActivity implements View.OnClickListener
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
+                    TextView txtclose_pdf;
+                    loading.show();
+                    loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    setDelay = new Handler();
+
+
                     TextView textView = (TextView) view.findViewById(R.id.rnameText);
                     String text = textView.getText().toString();
 
                     JSON_FINAL_URL = "https://378e-14-139-238-92.ngrok.io/api/user/report/"+phonen+"/"+lab_id+"/"+text+".pdf";
-
+                    webview_url = "https://docs.google.com/gview?embedded=true&url=" + JSON_FINAL_URL;
                     System.out.println("get pdf url" + JSON_FINAL_URL);
 
+                    webView = pdfview.findViewById(R.id.web);
+
+                    webView.setWebViewClient(new WebViewClient() {
+
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                            if(!completely_loaded){
+                                redirect = true;
+                            }
+                            completely_loaded=false;
+                            webView.loadUrl(webview_url);
+                            return true;
+                        }
+
+                        @Override
+                        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                            super.onPageStarted(view, url, favicon);
+                            completely_loaded=false;
+                            loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            loading.show();
+                        }
+
+                        @Override
+                        public void onPageFinished(WebView view, String url) {
+                            super.onPageFinished(view, url);
+                            if(!redirect){
+                                completely_loaded=true;
+                            }
+                            if(completely_loaded && !redirect){
+                                pdfview.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                pdfview.show();
+                                loading.dismiss();
+                            }
+                            else{
+                                redirect=false;
+                            }
+                        }
+                    });
+                    webView.getSettings().setSupportZoom(true);
+                    webView.getSettings().setJavaScriptEnabled(true);
+                    webView.loadUrl(webview_url);
+//                    startDelay = new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            loading.dismiss();
+//                            pdfview.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                            pdfview.show();
+//
+//                        }
+//                    };
+//                    setDelay.postDelayed(startDelay,10000);
+
+                    txtclose_pdf =(TextView) pdfview.findViewById(R.id.txtclose_pdf);
+                    txtclose_pdf.setText("X");
+//        test1.setText(id);
+                    txtclose_pdf.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            pdfview.dismiss();
+                        }
+                    });
                 }});
 
 

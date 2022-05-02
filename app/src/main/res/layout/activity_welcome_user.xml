@@ -101,7 +101,7 @@
         android:layout_marginTop="395dp"
         android:layout_marginEnd="14dp"
         android:layout_toEndOf="@+id/textView5"
-        android:background="#DEDEDE"
+        android:background="@drawable/rectangle_welcome_screen"
         android:drawableEnd="@drawable/ic_clip"
         android:drawableTint="@color/colorPrimary"
         android:gravity="center"
