@@ -23,8 +23,8 @@
         android:textColor="@color/white"
         android:textStyle="bold" />
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/idPDFView"
+    <WebView
+        android:id="@+id/web"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

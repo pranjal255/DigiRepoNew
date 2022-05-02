@@ -4,9 +4,9 @@
         android:id="@+id/home_btn"
         android:title="@string/home"
         android:icon="@drawable/home"/>
-    <item
-        android:id="@+id/reports_btn"
-        android:title="@string/issued_reports"
-        android:icon="@drawable/reportshow"/>
+<!--    <item-->
+<!--        android:id="@+id/reports_btn"-->
+<!--        android:title="@string/issued_reports"-->
+<!--        android:icon="@drawable/reportshow"/>-->
 
 </menu>
